@@ -1,5 +1,6 @@
 package hackdfw2016.smartalarm;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Alarm> alarms;
     Context context;
+    RecyclerView recyclerView;
+    AlarmListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,24 +37,40 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,CreateAlarm.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
 
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
 
         initAlarms();
 
-        AlarmListAdapter adapter = new AlarmListAdapter(alarms,this);
+        adapter = new AlarmListAdapter(alarms,this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-
-
-
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                String result=data.getStringExtra("alarmName");
+                Alarm alarm = new Alarm(result,"test","test");
+                alarms.add(alarm);
+                adapter.notifyDataSetChanged();
+
+
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult
+
 
     public void initAlarms(){
         alarms = new ArrayList<Alarm>();
