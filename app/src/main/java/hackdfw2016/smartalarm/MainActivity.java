@@ -1,15 +1,24 @@
 package hackdfw2016.smartalarm;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<Alarm> alarms;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +27,37 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        context = this;
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(context,CreateAlarm.class);
+                startActivity(intent);
             }
         });
+
+
+
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+
+        initAlarms();
+
+        AlarmListAdapter adapter = new AlarmListAdapter(alarms,this);
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+
+
+    }
+
+    public void initAlarms(){
+        alarms = new ArrayList<Alarm>();
+        alarms.add(new Alarm("alarm 1","2 am", "mwf"));
+        alarms.add(new Alarm("alarm 2","2 am"," monday wednesday friday"));
+        alarms.add(new Alarm("alarm 3","3 am"," friday"));
     }
 
     @Override
