@@ -42,11 +42,57 @@
         android:textColor="#CDC1C5"
         android:text="Repeat"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/days"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/Sunday"
+            android:background="@color/white"
+            android:text="S"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/Monday"
+            android:background="@color/white"
+            android:text="M"/>
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/Tuesday"
+            android:background="@color/white"
+            android:text="T"/>
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/Wednesday"
+            android:background="@color/white"
+            android:text="W"/>
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/Thursday"
+            android:background="@color/white"
+            android:text="T"/>
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/Friday"
+            android:background="@color/white"
+            android:text="F"/>
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/Saturday"
+            android:background="@color/white"
+            android:text="S"/>
+
+
+    </LinearLayout>
 
         <CheckBox
             android:layout_width="wrap_content"

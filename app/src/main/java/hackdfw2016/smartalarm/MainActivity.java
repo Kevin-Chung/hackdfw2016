@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Context context;
     RecyclerView recyclerView;
     AlarmListAdapter adapter;
+    String[] days ={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturady"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,16 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
                 String result=data.getStringExtra("alarmName");
-                Alarm alarm = new Alarm(result,"test","test");
+                Alarm alarm = new Alarm(result,"test","");
+                String day="";
+
+                int[] dayz = data.getIntArrayExtra("days");
+                for(int i = 0 ; i < dayz.length; i++){
+                    if(dayz[i]==1){
+                        day += days[i]+" ";
+                    }
+                }
+                alarm.setDays(day);
                 alarms.add(alarm);
                 adapter.notifyDataSetChanged();
 
