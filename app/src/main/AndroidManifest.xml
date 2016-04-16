@@ -24,4 +24,11 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
+    <receiver android:name=".BootReceiver"
+        android:enabled="true">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+        </intent-filter>
+    </receiver>
+
 </manifest>
