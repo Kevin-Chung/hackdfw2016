@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(context,CreateAlarm.class);
-                //startActivityForResult(intent, 1);
+                Intent intent = new Intent(context,CreateAlarm.class);
+                startActivityForResult(intent, 1);
             }
         });
 
