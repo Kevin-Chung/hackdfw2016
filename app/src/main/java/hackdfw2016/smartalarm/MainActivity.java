@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent alarmIntent = new Intent(context,BackgroundETAChecker.class);
                 pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
                 manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                int interval = 1000;
+                int interval = 1500;
                 //manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
                 manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, interval, interval, pendingIntent);
                 Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();

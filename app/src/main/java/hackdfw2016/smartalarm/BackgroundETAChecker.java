@@ -131,20 +131,21 @@ public class BackgroundETAChecker extends BroadcastReceiver {
         Log.d("substring",arivalTime.substring(2, 4));
 
         Calendar currentTime = Calendar.getInstance();
-        Log.d("arival time:",Integer.toString(arivalCalendar.get(Calendar.MINUTE)));
+        Log.d("arival time:", Integer.toString(arivalCalendar.get(Calendar.MINUTE)));
         currentTime.add(Calendar.MINUTE, Integer.parseInt(time));//todo plus prep time
         currentTime.add(Calendar.MINUTE,Integer.parseInt(prepTime));
         Log.d("comparison time:", Integer.toString(currentTime.get(Calendar.MINUTE)));
         Log.d("comparison:", Boolean.toString(currentTime.after(arivalCalendar)));
         if(currentTime.after(arivalCalendar)){
-            Intent intent = new Intent(myContext, WakeUpActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            myContext.startActivity(intent);
             //stop alarm here
             Intent alarmIntent = new Intent(myContext,BackgroundETAChecker.class);
             pendingIntent = PendingIntent.getBroadcast(myContext, 0, alarmIntent, 0);
             manager = (AlarmManager) myContext.getSystemService(Context.ALARM_SERVICE);
             manager.cancel(pendingIntent);
+            //go into intent
+            Intent intent = new Intent(myContext, WakeUpActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            myContext.startActivity(intent);
         }
     }
 
