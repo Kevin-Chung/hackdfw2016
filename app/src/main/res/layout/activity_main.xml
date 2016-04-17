@@ -29,6 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/fabColor"
+        android:background="@color/fabColor"
         android:src="@drawable/ic_add_alarm" />
 
     <android.support.design.widget.FloatingActionButton
@@ -37,6 +39,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/fabColor"
+        android:background="@color/fabColor"
         android:src="@drawable/ic_directions_bus_black_24dp" />
 
 

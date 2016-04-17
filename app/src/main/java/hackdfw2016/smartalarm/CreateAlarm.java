@@ -123,7 +123,6 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
         if (mGoogleApiClient == null) {
             Log.d("fail 2", "fail");
         }
-        prepTime = (EditText)findViewById(R.id.prepTime);
         save = (Button) findViewById(R.id.save);
         cancel = (Button) findViewById(R.id.cancel);
         alarmName = (EditText) findViewById(R.id.alarmName);
@@ -140,12 +139,15 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
 
                     }
                 }
-                returnIntent.putExtra("prepTime",Integer.toString(prepCal.get(Calendar.MINUTE)));
-                Log.d("create prep",prepTime.getText().toString());
+                returnIntent.putExtra("prepTime", Integer.toString(prepCal.get(Calendar.MINUTE)));
                 returnIntent.putExtra("days", days);
                 String timeString = Integer.toString(arrivaleCal.get(Calendar.HOUR)).concat(":").concat(Integer.toString(arrivaleCal.get(Calendar.MINUTE)));
                 returnIntent.putExtra("arivalTime", timeString);
                 setResult(Activity.RESULT_OK, returnIntent);
+                Log.d("alarmName", alarmName.getText().toString());
+                Log.d("prepTime", Integer.toString(prepCal.get(Calendar.MINUTE)));
+                Log.d("arivalTime", timeString);
+
                 sharedPrefsEditor.commit();
                 finish();
             }
