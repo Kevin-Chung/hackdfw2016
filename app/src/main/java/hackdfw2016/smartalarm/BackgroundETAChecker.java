@@ -106,9 +106,10 @@ public class BackgroundETAChecker extends BroadcastReceiver {
 
         }
 
-    public void setTime(String time){
-        this.time = time.split(" ")[0];
+    public void setTime(String time2){
+        this.time = time2.split(" ")[0];
         Log.d("TIMEEE",time);
+        Log.d("time2",time.split(" ")[0]);
         calcTime();
     }
 
