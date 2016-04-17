@@ -14,12 +14,12 @@
     tools:showIn="@layout/activity_wake_up"
     android:background="@color/white"
     android:id="@+id/wakeUpLayout">
-    <TextView
+    <DigitalClock
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="12:12 PM"
         android:id="@+id/timeShow"
-        android:textSize="80dp"
+        android:textSize="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:textColor="#000000" />

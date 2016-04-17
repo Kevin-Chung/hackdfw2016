@@ -40,6 +40,14 @@ public class WakeUpActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+
+        TextView tv = (TextView)findViewById(R.id.timeShow);
+        View v = tv.getRootView();
+
+        v.setBackgroundColor(getResources().getColor(R.color.black));
+
+
+
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN |
                         WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
                         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
@@ -53,11 +61,7 @@ public class WakeUpActivity extends AppCompatActivity{
         view= this.getWindow().getDecorView();
         thread.start();*/
         Calendar cal = Calendar.getInstance();
-        time= (TextView)findViewById(R.id.timeShow);
-        if(cal.get(Calendar.HOUR)>12){
-            time.setText(cal.get(Calendar.HOUR)-12+":"+cal.get(Calendar.MINUTE)+" PM");
-        }
-        else time.setText(cal.get(Calendar.HOUR)+":"+cal.get(Calendar.MINUTE)+" AM");
+
         //ringtone stuff
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         final MediaPlayer player = MediaPlayer.create(this, notification);
