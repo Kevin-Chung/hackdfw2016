@@ -69,7 +69,9 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
 
                     }
                 }
-                returnIntent.putExtra("days",days);
+                returnIntent.putExtra("days", days);
+                String timeString = Integer.toString(timeSelected.get(Calendar.HOUR)).concat(":").concat(Integer.toString(timeSelected.get(Calendar.MINUTE)));
+                returnIntent.putExtra("arivalTime",timeString);
                 setResult(Activity.RESULT_OK, returnIntent);
                 finish();
             }
@@ -111,8 +113,7 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
         saturday.setOnClickListener(this);
         map.put("saturday", "false");
 
-
-
+        //Better Picker
         arivalButton =(Button)findViewById(R.id.arivalTime);
 
         arivalButton.setOnClickListener(new View.OnClickListener(){
@@ -235,6 +236,8 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
         String time = "You picked the following time: "+hourOfDay+"h"+minute;
+        timeSelected.set(Calendar.HOUR,hourOfDay );
+        timeSelected.set(Calendar.MINUTE,minute );
         //timeTextView.setText(time);
     }
 }
