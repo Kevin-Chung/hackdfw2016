@@ -38,12 +38,16 @@
             android:layout_height="wrap_content"
             android:text="Arival Time"
             android:id="@+id/arivalTime" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Preperation Time"
-            android:id="@+id/prepTime"
-            android:inputType="number"/>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="Prep Time"
+                android:id="@+id/prepTime"
+                android:inputType="number"/>
+        </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
     <TextView
