@@ -4,8 +4,9 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name='android.permission.WAKE_LOCK'/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +15,8 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAVsykzRc9BbaQuMy-ILaywAolcxFK6d2w"/>
+            android:value="AIzaSyAVsykzRc9BbaQuMy-ILaywAolcxFK6d2w" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -28,16 +30,21 @@
         <activity
             android:name=".CreateAlarm"
             android:label="@string/title_activity_create_alarm"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <receiver android:name=".BootReceiver"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <receiver
+            android:name=".BootReceiver"
             android:enabled="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".BackgroundETAChecker"></receiver>
+        <receiver android:name=".BackgroundETAChecker" />
+
+        <activity
+            android:name=".WakeUpActivity"
+            android:label="@string/title_activity_wake_up"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
-
-
 
 </manifest>

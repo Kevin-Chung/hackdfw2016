@@ -22,9 +22,15 @@ public class BackgroundETAChecker extends BroadcastReceiver {
         preferencesSettings = arg0.getSharedPreferences("Settings", 0);
         String test = preferencesSettings.getString("arivalTime", "error");
         preferenceEditor=preferencesSettings.edit();
-        preferenceEditor.putString("arivalTime",test+"1");
+        preferenceEditor.putString("arivalTime", test + "1");
         preferenceEditor.commit();
         // For our recurring task, we'll just display a message
         Toast.makeText(arg0, "HELLO"+test, Toast.LENGTH_SHORT).show();
+        Log.i("running",test );
+        if(test.equals("4:20")){
+            Intent intent = new Intent(arg0, WakeUpActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            arg0.startActivity(intent);
+        }
     }
 }
