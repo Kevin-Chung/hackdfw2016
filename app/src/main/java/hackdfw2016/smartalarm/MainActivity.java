@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences sp = getSharedPreferences("settings",0);
                 SharedPreferences.Editor e = sp.edit();
 
-                String preptime = sp.getString("prepTime","");
+                String preptime = sp.getString("prepTime","5");
                 e.putString("prepTime",String.valueOf(Integer.parseInt(preptime)+10));
             }
         });
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent alarmIntent = new Intent(context,BackgroundETAChecker.class);
                 pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
                 manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                int interval = 1000;
+                int interval = 1500;
                 //manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
                 manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, interval, interval, pendingIntent);
                 Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
