@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         day += days[i]+" ";
                     }
                 }
+                String arivalTime=data.getStringExtra("arivalTime");
                 alarm.setDays(day);
                 alarms.add(alarm);
                 adapter.notifyDataSetChanged();
