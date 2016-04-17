@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
 
 
-                preferenceSettings=getPreferences(PREFERENCE_MODE_PRIVATE);
+                preferenceSettings=getSharedPreferences("Settings", 0);
                 preferenceEditor=preferenceSettings.edit();
                 preferenceEditor.putString("alarmName",result);
                 preferenceEditor.putString("arivalTime",arivalTime);
