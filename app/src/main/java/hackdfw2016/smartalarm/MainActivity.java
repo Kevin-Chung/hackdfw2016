@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         context = this;
 
-        Intent intent = new Intent(this,WakeUpInfoScreen.class);
-        startActivity(intent);
+        /*Intent intent = new Intent(this,WakeUpInfoScreen.class);
+        startActivity(intent);*/
 
         //scott
         /*Intent intent = new Intent(this,weatherAPI.class);
