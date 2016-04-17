@@ -23,6 +23,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -32,7 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CreateAlarm extends AppCompatActivity implements View.OnClickListener,
-        TimePickerDialog.OnTimeSetListener{
+        TimePickerDialog.OnTimeSetListener, GoogleApiClient.OnConnectionFailedListener{
     Button save,cancel;
     Button sunday,monday,tuesday,wednesday,thursday,friday,saturday;
     Button arivalButton;
@@ -236,5 +239,10 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
         String time = "You picked the following time: "+hourOfDay+"h"+minute;
         //timeTextView.setText(time);
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
     }
 }
