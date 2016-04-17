@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/addPlace"
-        android:text="Where will you be g oing?"/>
+        android:text="Where will you be going?"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,44 +53,58 @@
             android:layout_height="40dp"
             android:id="@+id/Sunday"
             android:background="@color/white"
-            android:text="S"/>
+            android:layout_margin="@dimen/space_xsmall"
+            android:textAllCaps="false"
+            android:text="Su"/>
 
         <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/Monday"
             android:background="@color/white"
-            android:text="M"/>
+            android:layout_margin="@dimen/space_xsmall"
+            android:textAllCaps="false"
+            android:text="Mo"/>
         <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/Tuesday"
             android:background="@color/white"
-            android:text="T"/>
+            android:layout_margin="@dimen/space_xsmall"
+            android:textAllCaps="false"
+            android:text="Tu"/>
         <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/Wednesday"
             android:background="@color/white"
-            android:text="W"/>
+            android:layout_margin="@dimen/space_xsmall"
+        android:textAllCaps="false"
+            android:text="We"/>
         <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/Thursday"
             android:background="@color/white"
-            android:text="T"/>
+            android:layout_margin="@dimen/space_xsmall"
+            android:textAllCaps="false"
+            android:text="Th"/>
         <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/Friday"
             android:background="@color/white"
-            android:text="F"/>
+            android:layout_margin="@dimen/space_xsmall"
+            android:textAllCaps="false"
+            android:text="Fr"/>
         <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/Saturday"
             android:background="@color/white"
-            android:text="S"/>
+            android:layout_margin="@dimen/space_xsmall"
+            android:textAllCaps="false"
+            android:text="Sa"/>
 
 
     </LinearLayout>
@@ -99,7 +113,15 @@
             android:layout_width="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
-            android:text="Enable maximum annoying mode ?"/>
+            android:text="Enable maximum annoying mode?"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="@color/gray"
+        android:layout_marginTop="@dimen/space_small"
+        android:layout_marginBottom="@dimen/space_small" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -109,7 +131,8 @@
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
             android:layout_weight="1"
-            android:text="Save"/>
+            android:text="Save"
+            android:layout_marginRight="@dimen/space_small"/>
 
         <Button
             android:id="@+id/cancel"

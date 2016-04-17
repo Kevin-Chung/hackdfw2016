@@ -19,7 +19,7 @@
             android:layout_height="100dp"
             android:orientation="vertical"
             android:layout_gravity="bottom|center"
-            android:padding="@dimen/space_xsmall">
+            android:padding="@dimen/space_small">
 
             <TextView
                 android:id="@+id/alarmName"
