@@ -55,14 +55,17 @@ public class WakeUpInfoScreen extends AppCompatActivity {
 
         Calendar cal = Calendar.getInstance();
         String leave = sharedPrefs.getString("prepTime","5");
-        Log.d("leave = ",leave);
+        Log.d("leave = ", leave);
         cal.add(Calendar.MINUTE, Integer.parseInt(leave));
         Log.d("cal = ", String.valueOf(cal.get(Calendar.MINUTE)));
         timeToLeave = (TextView)findViewById(R.id.time_to_leave);
-        if(cal.get(Calendar.HOUR)>12){
-            timeToLeave.setText(cal.get(Calendar.HOUR)-12+":"+cal.get(Calendar.MINUTE)+" PM");
+        if(cal.get(Calendar.MINUTE)<10){
+            timeToLeave.setText(cal.get(Calendar.HOUR)+":0"+cal.get(Calendar.MINUTE)+" PM");
         }
-        else timeToLeave.setText(cal.get(Calendar.HOUR)+":"+cal.get(Calendar.MINUTE)+" AM");
+        else
+    {
+        timeToLeave.setText(cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + " PM");
+    }
 
     }
     String run(String url) throws IOException {
@@ -84,7 +87,7 @@ public class WakeUpInfoScreen extends AppCompatActivity {
                     String summary = weather.getString("summary");
                     int temp = weather.getInt("temperature");
                     int rain = weather.getInt("precipProbability");
-                    text = "The weather is "+summary+" "+temp+" degrees farenheit. Drive safely.";
+                    text = "The weather is "+summary+" "+temp+" degrees farenheit. Havea good day";
                     //setWeather(text);
                     this.publishProgress(text);
 

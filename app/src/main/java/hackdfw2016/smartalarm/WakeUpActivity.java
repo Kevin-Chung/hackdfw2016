@@ -57,9 +57,6 @@ public class WakeUpActivity extends AppCompatActivity{
                         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                         WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         //colors
-        /*Thread thread = new Thread(new WakeUpActivity());
-        view= this.getWindow().getDecorView();
-        thread.start();*/
         Calendar cal = Calendar.getInstance();
 
         //ringtone stuff
@@ -93,6 +90,8 @@ public class WakeUpActivity extends AppCompatActivity{
         });
         fab.hide();
     }
+
+
 
     /*@Override
     public void run() {
