@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -80,6 +81,8 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
     Activity activity;
     Place place;
     double[] coords;
+    SharedPreferences sharedPrefs;
+    SharedPreferences.Editor sharedPrefsEditor;
 
     GoogleApiClient mGoogleApiClient;
 
@@ -98,6 +101,11 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
 
         context = this;
         activity = this;
+
+
+        sharedPrefs=getSharedPreferences("Settings", 0);
+        sharedPrefsEditor=sharedPrefs.edit();
+
 
         // Create an instance of GoogleAPIClient.
         if (mGoogleApiClient == null) {
@@ -131,6 +139,7 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
                 String timeString = Integer.toString(timeSelected.get(Calendar.HOUR)).concat(":").concat(Integer.toString(timeSelected.get(Calendar.MINUTE)));
                 returnIntent.putExtra("arivalTime", timeString);
                 setResult(Activity.RESULT_OK, returnIntent);
+                sharedPrefsEditor.commit();
                 finish();
             }
         });
@@ -222,6 +231,7 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 place = PlaceAutocomplete.getPlace(this, data);
+                sharedPrefsEditor.putString("place",place.getName()+"");
 
                 try{
                     Log.d("hello","hello");
@@ -472,8 +482,10 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
         Log.d("location",String.valueOf(mCurrentLocation.getLatitude())+" "+String.valueOf(mCurrentLocation.getLongitude()));
         Toast.makeText(this,"location was received",Toast.LENGTH_SHORT).show();
         coords[0] = mCurrentLocation.getLatitude();
+        sharedPrefsEditor.putString("lat",coords[0]+"");
         coords[1] = mCurrentLocation.getLongitude();
         Log.d("coords", coords[0]+"\n"+coords[1]);
+        sharedPrefsEditor.putString("long",coords[1]+"");
     }
 
 
