@@ -66,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        FloatingActionButton traffic = (FloatingActionButton)findViewById(R.id.traffic);
+        traffic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sp = getSharedPreferences("settings",0);
+                SharedPreferences.Editor e = sp.edit();
+
+                String preptime = sp.getString("prepTime","");
+                e.putString("prepTime",String.valueOf(Integer.parseInt(preptime)+10));
+            }
+        });
 
 
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
