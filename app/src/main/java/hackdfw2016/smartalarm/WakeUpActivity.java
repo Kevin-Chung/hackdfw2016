@@ -65,6 +65,9 @@ public class WakeUpActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.stop();
+                Intent intent = new Intent(view.getContext(),WakeUpInfoScreen.class);
+                startActivity(intent);
+                finish();
             }
         });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
