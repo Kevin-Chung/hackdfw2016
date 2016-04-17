@@ -37,11 +37,12 @@ public class BackgroundETAChecker extends BroadcastReceiver {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             arg0.startActivity(intent);
         }
-        Intent alarmIntent = new Intent(arg0,BackgroundETAChecker.class);
+
+        /*Intent alarmIntent = new Intent(arg0,BackgroundETAChecker.class);
         pendingIntent = PendingIntent.getBroadcast(arg0, 0, alarmIntent, 0);
         manager = (AlarmManager) arg0.getSystemService(Context.ALARM_SERVICE);
         long interval = 1000000000;
         //manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
-        manager.setExact(AlarmManager.RTC_WAKEUP, interval, pendingIntent);
+        manager.setExact(AlarmManager.RTC_WAKEUP, interval, pendingIntent);*/
     }
 }

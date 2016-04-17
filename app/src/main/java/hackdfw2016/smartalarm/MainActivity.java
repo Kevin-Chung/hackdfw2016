@@ -102,16 +102,16 @@ public class MainActivity extends AppCompatActivity {
                 preferenceEditor=preferenceSettings.edit();
                 preferenceEditor.putString("alarmName", result);
                 preferenceEditor.putString("arivalTime", arivalTime);
-                preferenceEditor.putString("dayz",day);
+                preferenceEditor.putString("dayz", day);
                 preferenceEditor.commit();
 
 
                 Intent alarmIntent = new Intent(context,BackgroundETAChecker.class);
                 pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
                 manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                int interval = 10000;
+                int interval = 5000;
                 //manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
-                manager.setExact(AlarmManager.RTC_WAKEUP, interval, pendingIntent);
+                manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, interval, interval, pendingIntent);
                 Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
 
             }
