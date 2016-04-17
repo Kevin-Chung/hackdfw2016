@@ -45,3 +45,6 @@ proguard/
 
 # Android Studio captures folder
 captures/
+
+#vcs
+.idea/vcs.xml
