@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/addPlace"
-        android:text="Where will you be g oing?"/>
+        android:text="Where will you be going?"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
-            android:text="Enable maximum annoying mode ?"/>
+            android:text="Enable maximum annoying mode?"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -109,7 +109,8 @@
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
             android:layout_weight="1"
-            android:text="Save"/>
+            android:text="Save"
+            android:layout_marginRight="@dimen/space_small"/>
 
         <Button
             android:id="@+id/cancel"
