@@ -23,16 +23,21 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateAlarm extends AppCompatActivity implements View.OnClickListener{
-
+public class CreateAlarm extends AppCompatActivity implements View.OnClickListener,
+        TimePickerDialog.OnTimeSetListener{
     Button save,cancel;
     Button sunday,monday,tuesday,wednesday,thursday,friday,saturday;
+    Button arivalButton;
     EditText alarmName;
+    Calendar timeSelected;
     HashMap<String,String> map;
 
     int[] days = {0,0,0,0,0,0,0};
@@ -80,33 +85,49 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
 
         sunday = (Button)findViewById(R.id.Sunday);
         sunday.setOnClickListener(this);
-        map.put("sunday","false");
+        map.put("sunday", "false");
 
         monday = (Button)findViewById(R.id.Monday);
         monday.setOnClickListener(this);
-        map.put("monday","false");
+        map.put("monday", "false");
 
         tuesday = (Button)findViewById(R.id.Tuesday);
         tuesday.setOnClickListener(this);
-        map.put("tuesday","false");
+        map.put("tuesday", "false");
 
         wednesday = (Button)findViewById(R.id.Wednesday);
         wednesday.setOnClickListener(this);
-        map.put("wednesday","false");
+        map.put("wednesday", "false");
 
         thursday = (Button)findViewById(R.id.Thursday);
         thursday.setOnClickListener(this);
-        map.put("thursday","false");
+        map.put("thursday", "false");
 
         friday = (Button)findViewById(R.id.Friday);
         friday.setOnClickListener(this);
-        map.put("friday","false");
+        map.put("friday", "false");
 
         saturday = (Button)findViewById(R.id.Saturday);
         saturday.setOnClickListener(this);
-        map.put("saturday","false");
+        map.put("saturday", "false");
 
 
+
+        arivalButton =(Button)findViewById(R.id.arivalTime);
+
+        arivalButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                timeSelected = Calendar.getInstance();
+                TimePickerDialog tpd = TimePickerDialog.newInstance(
+                        CreateAlarm.this,
+                        timeSelected.get(Calendar.YEAR),
+                        timeSelected.get(Calendar.MONTH),
+                        false//false 12 hour true 24 hour
+                );
+                tpd.show(getFragmentManager(), "Pick Arrival Time");
+            }
+        });
     }
     public void hideSoftKeyboard() {
         if(getCurrentFocus()!=null) {
@@ -207,5 +228,13 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
             }
 
         }
+    }
+
+    //Roberts Stuff ^^
+
+    @Override
+    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
+        String time = "You picked the following time: "+hourOfDay+"h"+minute;
+        //timeTextView.setText(time);
     }
 }

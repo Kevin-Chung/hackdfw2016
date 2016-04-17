@@ -35,6 +35,12 @@
             android:hint ="Where are you heading?"/>
     </android.support.design.widget.TextInputLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arival Time"
+        android:id="@+id/arivalTime" />
+
     <TextView
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
