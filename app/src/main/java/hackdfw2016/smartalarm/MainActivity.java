@@ -3,6 +3,7 @@ package hackdfw2016.smartalarm;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     AlarmListAdapter adapter;
     String[] days ={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturady"};
+
+
+    private SharedPreferences preferenceSettings;
+    private SharedPreferences.Editor preferenceEditor;
+    private static final int PREFERENCE_MODE_PRIVATE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
                 alarm.setDays(day);
                 alarms.add(alarm);
                 adapter.notifyDataSetChanged();
+
+
+                preferenceSettings=getPreferences(PREFERENCE_MODE_PRIVATE);
+                preferenceEditor=preferenceSettings.edit();
+                preferenceEditor.putString("alarmName",result);
+                preferenceEditor.putString("arivalTime",arivalTime);
+                preferenceEditor.putString("dayz",day);
+                preferenceEditor.commit();
 
 
             }
