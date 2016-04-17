@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
                 preferenceSettings=getSharedPreferences("Settings", 0);
                 preferenceEditor=preferenceSettings.edit();
+                Log.d("Main Prep",prepTime);
                 preferenceEditor.putString("prepTime", prepTime);
                 preferenceEditor.putString("alarmName", result);
                 preferenceEditor.putString("arivalTime", arivalTime);

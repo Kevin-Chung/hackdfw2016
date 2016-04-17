@@ -45,6 +45,7 @@ public class BackgroundETAChecker extends BroadcastReceiver {
         arivalTime = preferencesSettings.getString("arivalTime", "error");
         prepTime = preferencesSettings.getString("prepTime","noPrep");
         // For our recurring task, we'll just display a message
+        Log.d("prepTime",prepTime);
         Log.i("running", arivalTime);
         /*if(arivalTime.equals("4:201")){
             Intent intent = new Intent(arg0, WakeUpActivity.class);

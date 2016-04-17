@@ -135,7 +135,8 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
 
                     }
                 }
-                returnIntent.putExtra("prepTime",prepTime.getText());
+                returnIntent.putExtra("prepTime",prepTime.getText().toString());
+                Log.d("create prep",prepTime.getText().toString());
                 returnIntent.putExtra("days", days);
                 String timeString = Integer.toString(timeSelected.get(Calendar.HOUR)).concat(":").concat(Integer.toString(timeSelected.get(Calendar.MINUTE)));
                 returnIntent.putExtra("arivalTime", timeString);
