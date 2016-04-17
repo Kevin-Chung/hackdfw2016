@@ -19,13 +19,16 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 public class WakeUpActivity extends AppCompatActivity{
     private PowerManager.WakeLock wl;
     Button stopMusic;
     View view;
+    TextView time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,7 @@ public class WakeUpActivity extends AppCompatActivity{
         Log.i("in wakeup", "activity");
         setContentView(R.layout.activity_wake_up);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN |
                         WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
@@ -48,7 +52,12 @@ public class WakeUpActivity extends AppCompatActivity{
         /*Thread thread = new Thread(new WakeUpActivity());
         view= this.getWindow().getDecorView();
         thread.start();*/
-
+        Calendar cal = Calendar.getInstance();
+        time= (TextView)findViewById(R.id.timeShow);
+        if(cal.get(Calendar.HOUR)>12){
+            time.setText(cal.get(Calendar.HOUR)-12+":"+cal.get(Calendar.MINUTE)+" PM");
+        }
+        else time.setText(cal.get(Calendar.HOUR)+":"+cal.get(Calendar.MINUTE)+" AM");
         //ringtone stuff
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         final MediaPlayer player = MediaPlayer.create(this, notification);
@@ -78,6 +87,7 @@ public class WakeUpActivity extends AppCompatActivity{
                         .setAction("Action", null).show();
             }
         });
+        fab.hide();
     }
 
     /*@Override

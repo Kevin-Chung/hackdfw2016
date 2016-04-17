@@ -55,11 +55,12 @@ public class WakeUpInfoScreen extends AppCompatActivity {
 
         Calendar cal = Calendar.getInstance();
         String leave = sharedPrefs.getString("prepTime","5");
-        cal.add(Calendar.MINUTE,Integer.parseInt(leave));
-
+        Log.d("leave = ",leave);
+        cal.add(Calendar.MINUTE, Integer.parseInt(leave));
+        Log.d("cal = ", String.valueOf(cal.get(Calendar.MINUTE)));
         timeToLeave = (TextView)findViewById(R.id.time_to_leave);
         if(cal.get(Calendar.HOUR)>12){
-            timeToLeave.setText(cal.get(Calendar.HOUR)/12+":"+cal.get(Calendar.MINUTE)+" PM");
+            timeToLeave.setText(cal.get(Calendar.HOUR)-12+":"+cal.get(Calendar.MINUTE)+" PM");
         }
         else timeToLeave.setText(cal.get(Calendar.HOUR)+":"+cal.get(Calendar.MINUTE)+" AM");
 
@@ -83,7 +84,7 @@ public class WakeUpInfoScreen extends AppCompatActivity {
                     String summary = weather.getString("summary");
                     int temp = weather.getInt("temperature");
                     int rain = weather.getInt("precipProbability");
-                    text = "The weather is "+summary+" "+temp+" degrees farenheit" +" with a "+rain+" percent chance to rain";
+                    text = "The weather is "+summary+" "+temp+" degrees farenheit. Drive safely.";
                     //setWeather(text);
                     this.publishProgress(text);
 

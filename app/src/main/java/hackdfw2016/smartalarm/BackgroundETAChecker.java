@@ -126,9 +126,9 @@ public class BackgroundETAChecker extends BroadcastReceiver {
         //arivalTime
         //todo get prep time
         Calendar arivalCalendar =Calendar.getInstance();
-        arivalCalendar.set(Calendar.HOUR,Integer.parseInt(""+arivalTime.charAt(0)));
-        arivalCalendar.set(Calendar.MINUTE, Integer.parseInt(arivalTime.substring(2, 4)));
-        Log.d("substring",arivalTime.substring(2, 4));
+        String[]tokens = arivalTime.split(":");
+        arivalCalendar.set(Calendar.HOUR,Integer.parseInt(tokens[0]));
+        arivalCalendar.set(Calendar.MINUTE, Integer.parseInt(tokens[1]));
 
         Calendar currentTime = Calendar.getInstance();
         Log.d("arival time:", Integer.toString(arivalCalendar.get(Calendar.MINUTE)));
