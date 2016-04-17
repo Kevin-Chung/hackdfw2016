@@ -26,12 +26,12 @@ public class BootReceiver extends BroadcastReceiver {
 
 
             //setup repeating alarm
-            Intent alarmIntent = new Intent(context,BackgroundETAChecker.class);
+            /*Intent alarmIntent = new Intent(context,BackgroundETAChecker.class);
             pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
             manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             int interval = 10000;
             manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
-            Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();*/
         }
     }
 }

@@ -1,6 +1,8 @@
 package hackdfw2016.smartalarm;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -22,6 +25,12 @@ import com.google.android.gms.location.places.Places;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    private PendingIntent pendingIntent;
+    private AlarmManager manager;
+
+
 
     ArrayList<Alarm> alarms;
     Context context;
@@ -91,11 +100,19 @@ public class MainActivity extends AppCompatActivity {
 
                 preferenceSettings=getSharedPreferences("Settings", 0);
                 preferenceEditor=preferenceSettings.edit();
-                preferenceEditor.putString("alarmName",result);
-                preferenceEditor.putString("arivalTime",arivalTime);
+                preferenceEditor.putString("alarmName", result);
+                preferenceEditor.putString("arivalTime", arivalTime);
                 preferenceEditor.putString("dayz",day);
                 preferenceEditor.commit();
 
+
+                Intent alarmIntent = new Intent(context,BackgroundETAChecker.class);
+                pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
+                manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                int interval = 10000;
+                //manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
+                manager.setExact(AlarmManager.RTC_WAKEUP, interval, pendingIntent);
+                Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
 
             }
             if (resultCode == Activity.RESULT_CANCELED) {
