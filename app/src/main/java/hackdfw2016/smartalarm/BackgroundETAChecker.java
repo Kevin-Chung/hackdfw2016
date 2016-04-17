@@ -54,10 +54,9 @@ public class BackgroundETAChecker extends BroadcastReceiver {
         }*/
 
         if(!arivalTime.equals("error")) {
-            /*lat = Double.valueOf(preferencesSettings.getString("lat", ""));
-            longi = Double.valueOf(preferencesSettings.getString("long", ""));*/
-            lat = 0.0;
-            longi=0.0;
+            lat = Double.valueOf(preferencesSettings.getString("lat", ""));
+            longi = Double.valueOf(preferencesSettings.getString("long", ""));
+
             String place = preferencesSettings.getString("place", "");
 
             String url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&";
@@ -65,12 +64,12 @@ public class BackgroundETAChecker extends BroadcastReceiver {
             url += "&destinations=" + place + "Dallas, TX, United States";
             url += "&key=AIzaSyAVsykzRc9BbaQuMy-ILaywAolcxFK6d2w";
             setTime("1 m");
-/*
+
             try {
                 run(url);
             } catch (IOException e) {
                 e.printStackTrace();
-            }*/
+            }
         }
 
 
@@ -91,6 +90,7 @@ public class BackgroundETAChecker extends BroadcastReceiver {
                         //Log.d("we made it",response.body().string());
                         String json = response.body().string();
                         JSONObject array = new JSONObject(json);
+                        Log.d("json obj",array.toString());
                         String time = array.getJSONArray("rows").getJSONObject(0).getJSONArray("elements").getJSONObject(0).getJSONObject("duration").getString("text").toString();
                         Log.d("we made it",time);
                         setTime(time);

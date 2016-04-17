@@ -483,9 +483,9 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
         String mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
         Log.d("location",String.valueOf(mCurrentLocation.getLatitude())+" "+String.valueOf(mCurrentLocation.getLongitude()));
         Toast.makeText(this,"location was received",Toast.LENGTH_SHORT).show();
-        coords[0] = mCurrentLocation.getLatitude();
+        coords[0] = 32.7595618 ;
         sharedPrefsEditor.putString("lat",coords[0]+"");
-        coords[1] = mCurrentLocation.getLongitude();
+        coords[1] =  -96.80699;
         Log.d("coords", coords[0]+"\n"+coords[1]);
         sharedPrefsEditor.putString("long",coords[1]+"");
     }
