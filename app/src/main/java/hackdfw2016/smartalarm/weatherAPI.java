@@ -9,10 +9,10 @@ import okhttp3.Response;
 /**
  * Created by snidell on 4/16/16.
  */
-public class WeatherAPI {
+public class weatherAPI {
     String APIkey="https://github.com/Kevin-Chung/hackdfw2016.git";
     String url="";
-    public WeatherAPI(){
+    public weatherAPI(){
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(url).build();
 
