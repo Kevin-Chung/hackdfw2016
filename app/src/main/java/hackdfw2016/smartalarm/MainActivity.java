@@ -43,12 +43,16 @@ public class MainActivity extends AppCompatActivity {
 
         context = this;
 
+        //scott
+        /*Intent intent = new Intent(this,weatherAPI.class);
+        startActivity(intent);*/
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,CreateAlarm.class);
-                startActivityForResult(intent, 1);
+                //Intent intent = new Intent(context,CreateAlarm.class);
+                //startActivityForResult(intent, 1);
             }
         });
 

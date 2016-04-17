@@ -48,6 +48,10 @@ import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -437,8 +441,13 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
                 Request request = new Request.Builder().url(String.valueOf(params[0])).build();
                 try {
                     Response response = client.newCall(request).execute();
-                    Log.d("we made it",response.body().string());
+                    //Log.d("we made it",response.body().string());
+                    String json = response.body().string();
+                    JSONObject array = new JSONObject(json);
+                    Log.d("we made it",array.getJSONArray("rows").getJSONObject(0).getJSONArray("elements").getJSONObject(0).getJSONObject("duration").getString("text").toString());
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 return null;
