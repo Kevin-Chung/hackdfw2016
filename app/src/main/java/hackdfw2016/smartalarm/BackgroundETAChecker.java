@@ -66,6 +66,7 @@ public class BackgroundETAChecker extends BroadcastReceiver {
             url += "origins=" + lat + "," + longi;
             url += "&destinations=" + place + "Dallas, TX, United States";
             url += "&key=AIzaSyAVsykzRc9BbaQuMy-ILaywAolcxFK6d2w";
+            setTime("1 m");
 /*
             try {
                 run(url);
@@ -131,11 +132,15 @@ public class BackgroundETAChecker extends BroadcastReceiver {
         arivalCalendar.set(Calendar.MINUTE, Integer.parseInt(arivalTime.substring(2, 3)));
 
         Calendar currentTime = Calendar.getInstance();
+        Log.d("arival time:",arivalCalendar.toString());
         currentTime.add(Calendar.MINUTE, 1);//todo plus prep time
+        Log.d("comparison time:", currentTime.toString());
+        Log.d("comparison:", Boolean.toString(currentTime.after(arivalCalendar)));
         if(currentTime.after(arivalCalendar)){
             Intent intent = new Intent(myContext, WakeUpActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             myContext.startActivity(intent);
+            //stop alarm here
         }
     }
 
