@@ -48,6 +48,7 @@ import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.Timepoint;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,9 +72,9 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
         TimePickerDialog.OnTimeSetListener, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks, LocationListener {
     Button save, cancel;
     Button sunday, monday, tuesday, wednesday, thursday, friday, saturday;
-    Button arivalButton;
+    Button arivalButton,prepButton;
     EditText alarmName,prepTime;
-    Calendar timeSelected;
+    Calendar arrivaleCal,prepCal;
     HashMap<String, String> map;
     Button addPlace;
     Context context;
@@ -83,7 +84,11 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
     double[] coords;
     SharedPreferences sharedPrefs;
     SharedPreferences.Editor sharedPrefsEditor;
-
+    public enum enumPicker{
+        arrival,
+        prepEnum;
+    }
+    enumPicker enumVar;
     GoogleApiClient mGoogleApiClient;
 
     @Override
@@ -135,10 +140,10 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
 
                     }
                 }
-                returnIntent.putExtra("prepTime",prepTime.getText().toString());
+                returnIntent.putExtra("prepTime",Integer.toString(prepCal.get(Calendar.MINUTE)));
                 Log.d("create prep",prepTime.getText().toString());
                 returnIntent.putExtra("days", days);
-                String timeString = Integer.toString(timeSelected.get(Calendar.HOUR)).concat(":").concat(Integer.toString(timeSelected.get(Calendar.MINUTE)));
+                String timeString = Integer.toString(arrivaleCal.get(Calendar.HOUR)).concat(":").concat(Integer.toString(arrivaleCal.get(Calendar.MINUTE)));
                 returnIntent.putExtra("arivalTime", timeString);
                 setResult(Activity.RESULT_OK, returnIntent);
                 sharedPrefsEditor.commit();
@@ -209,16 +214,39 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
         arivalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timeSelected = Calendar.getInstance();
+                arrivaleCal = Calendar.getInstance();
                 TimePickerDialog tpd = TimePickerDialog.newInstance(
                         CreateAlarm.this,
-                        timeSelected.get(Calendar.YEAR),
-                        timeSelected.get(Calendar.MONTH),
+                        arrivaleCal.get(Calendar.YEAR),
+                        arrivaleCal.get(Calendar.MONTH),
                         false//false 12 hour true 24 hour
                 );
+                enumVar=enumPicker.arrival;
                 tpd.show(getFragmentManager(), "Pick Arrival Time");
             }
         });
+        prepButton =(Button)findViewById(R.id.prepTimeBTN);
+        prepButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                prepCal = Calendar.getInstance();
+                TimePickerDialog tpd = TimePickerDialog.newInstance(
+                        CreateAlarm.this,
+                        prepCal.get(Calendar.YEAR),
+                        prepCal.get(Calendar.MONTH),
+                        false//false 12 hour true 24 hour
+                );
+                Timepoint[] timePoints=new Timepoint[4];
+                timePoints[0]=new Timepoint(0,0,0);
+                timePoints[1]=new Timepoint(0,15,0);
+                timePoints[2]=new Timepoint(0,30,0);
+                timePoints[3]=new Timepoint(0,45,0);
+                tpd.setSelectableTimes(timePoints);
+                enumVar=enumPicker.prepEnum;
+                tpd.show(getFragmentManager(), "Pick Arrival Time");
+            }
+        });
+
     }
 
     public void hideSoftKeyboard() {
@@ -358,10 +386,17 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-        String time = "You picked the following time: " + hourOfDay + "h" + minute;
-        timeSelected.set(Calendar.HOUR, hourOfDay);
-        timeSelected.set(Calendar.MINUTE, minute);
-        //timeTextView.setText(time);
+        if (enumVar == enumPicker.arrival) {
+            String time = "You picked the following time: " + hourOfDay + "h" + minute;
+            arrivaleCal.set(Calendar.HOUR, hourOfDay);
+            arrivaleCal.set(Calendar.MINUTE, minute);
+            //timeTextView.setText(time);
+        }
+        else{
+            prepCal.set(Calendar.HOUR, hourOfDay);
+            prepCal.set(Calendar.MINUTE, minute);
+        }
+
     }
 
     @Override
