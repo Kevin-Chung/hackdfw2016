@@ -444,7 +444,7 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
                     //Log.d("we made it",response.body().string());
                     String json = response.body().string();
                     JSONObject array = new JSONObject(json);
-                    Log.d("we made it",array.getJSONArray("rows").getJSONArray(0).getJSONObject(1).getString("text"));
+                    Log.d("we made it",array.getJSONArray("rows").getJSONObject(0).getJSONArray("elements").getJSONObject(0).getJSONObject("duration").getString("text").toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
