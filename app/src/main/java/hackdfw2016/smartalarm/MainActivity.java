@@ -83,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
                 String result=data.getStringExtra("alarmName");
-                Alarm alarm = new Alarm(result,"test","");
+                String arivalTime=data.getStringExtra("arivalTime");
+                Alarm alarm = new Alarm(result,arivalTime,"");
                 String day="";
 
                 int[] dayz = data.getIntArrayExtra("days");
@@ -92,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
                         day += days[i]+" ";
                     }
                 }
-                String arivalTime=data.getStringExtra("arivalTime");
                 alarm.setDays(day);
                 alarms.add(alarm);
                 adapter.notifyDataSetChanged();
@@ -124,9 +124,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void initAlarms(){
         alarms = new ArrayList<Alarm>();
-        alarms.add(new Alarm("alarm 1","2 am", "mwf"));
-        alarms.add(new Alarm("alarm 2","2 am"," monday wednesday friday"));
-        alarms.add(new Alarm("alarm 3","3 am"," friday"));
+        alarms.add(new Alarm("T/TH Classes","2:00", "Tuesday Thrusday"));
+        alarms.add(new Alarm("M/W Classes","3:00"," Monday Wednesday"));
+        alarms.add(new Alarm("Friday!","6:30"," Friday"));
     }
 
     @Override
