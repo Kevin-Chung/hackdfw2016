@@ -142,9 +142,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void initAlarms(){
         alarms = new ArrayList<Alarm>();
-        alarms.add(new Alarm("T/TH Classes","2:00", "Tuesday Thrusday"));
-        alarms.add(new Alarm("M/W Classes","3:00"," Monday Wednesday"));
-        alarms.add(new Alarm("Friday!","6:30"," Friday"));
+        alarms.add(new Alarm("T/TH Classes","7:00 AM", "Tuesday Thrusday"));
+        alarms.add(new Alarm("M/W Classes","8:00 AM"," Monday Wednesday"));
+        alarms.add(new Alarm("Friday!","6:30 AM"," Friday"));
     }
 
     @Override
