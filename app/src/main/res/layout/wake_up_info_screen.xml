@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:id="@+id/digitalClock"
+        android:textSize="50dp"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -53,7 +54,7 @@
         android:ems="10"
         android:id="@+id/time_to_leave"
         android:layout_marginTop="30dp"
-        android:textSize="20dp"
+        android:textSize="50dp"
         android:gravity="center"
         android:layout_gravity="center_horizontal|center_vertical" />
 
