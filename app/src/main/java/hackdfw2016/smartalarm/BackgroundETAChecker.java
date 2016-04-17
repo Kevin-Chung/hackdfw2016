@@ -47,7 +47,6 @@ public class BackgroundETAChecker extends BroadcastReceiver {
         preferenceEditor.putString("arivalTime", arivalTime + "1");
         preferenceEditor.commit();
         // For our recurring task, we'll just display a message
-        Toast.makeText(arg0, "HELLO"+arivalTime, Toast.LENGTH_SHORT).show();
         Log.i("running", arivalTime);
         /*if(arivalTime.equals("4:201")){
             Intent intent = new Intent(arg0, WakeUpActivity.class);
@@ -129,18 +128,23 @@ public class BackgroundETAChecker extends BroadcastReceiver {
         //todo get prep time
         Calendar arivalCalendar =Calendar.getInstance();
         arivalCalendar.set(Calendar.HOUR,Integer.parseInt(""+arivalTime.charAt(0)));
-        arivalCalendar.set(Calendar.MINUTE, Integer.parseInt(arivalTime.substring(2, 3)));
+        arivalCalendar.set(Calendar.MINUTE, Integer.parseInt(arivalTime.substring(2, 4)));
+        Log.d("substring",arivalTime.substring(2, 4));
 
         Calendar currentTime = Calendar.getInstance();
-        Log.d("arival time:",arivalCalendar.toString());
+        Log.d("arival time:",Integer.toString(arivalCalendar.get(Calendar.MINUTE)));
         currentTime.add(Calendar.MINUTE, 1);//todo plus prep time
-        Log.d("comparison time:", currentTime.toString());
+        Log.d("comparison time:", Integer.toString(currentTime.get(Calendar.MINUTE)));
         Log.d("comparison:", Boolean.toString(currentTime.after(arivalCalendar)));
         if(currentTime.after(arivalCalendar)){
             Intent intent = new Intent(myContext, WakeUpActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             myContext.startActivity(intent);
             //stop alarm here
+            Intent alarmIntent = new Intent(myContext,BackgroundETAChecker.class);
+            pendingIntent = PendingIntent.getBroadcast(myContext, 0, alarmIntent, 0);
+            manager = (AlarmManager) myContext.getSystemService(Context.ALARM_SERVICE);
+            manager.cancel(pendingIntent);
         }
     }
 
