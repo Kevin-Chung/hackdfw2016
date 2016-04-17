@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
         context = this;
 
+        Intent intent = new Intent(this,WakeUpInfoScreen.class);
+        startActivity(intent);
+
         //scott
         /*Intent intent = new Intent(this,weatherAPI.class);
         startActivity(intent);*/
@@ -70,11 +73,12 @@ public class MainActivity extends AppCompatActivity {
         traffic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sp = getSharedPreferences("settings",0);
+                SharedPreferences sp = getSharedPreferences("Settings",0);
                 SharedPreferences.Editor e = sp.edit();
 
-                String preptime = sp.getString("prepTime","");
+                String preptime = sp.getString("prepTime","5");
                 e.putString("prepTime",String.valueOf(Integer.parseInt(preptime)+10));
+                e.commit();
             }
         });
 

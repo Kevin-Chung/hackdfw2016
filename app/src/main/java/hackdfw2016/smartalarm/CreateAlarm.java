@@ -486,6 +486,7 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
         coords[0] = 32.7595618 ;
         sharedPrefsEditor.putString("lat",coords[0]+"");
         coords[1] =  -96.80699;
+        coords[1] =  -96.80699;
         Log.d("coords", coords[0]+"\n"+coords[1]);
         sharedPrefsEditor.putString("long",coords[1]+"");
     }

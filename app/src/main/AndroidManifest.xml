@@ -45,6 +45,9 @@
             android:name=".WakeUpActivity"
             android:label="@string/title_activity_wake_up"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".WakeUpInfoScreen"
+            android:label="WakeUpInfoScreen"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
