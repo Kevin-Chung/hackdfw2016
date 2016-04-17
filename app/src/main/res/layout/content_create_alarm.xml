@@ -27,13 +27,13 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:textColor="@color/colorAccent"
         android:layout_height="wrap_content"
-        android:background="@color/test"
+        android:background="@color/white"
         android:id="@+id/addPlace"
         android:text="Where will you be going?"/>
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
             android:layout_width="wrap_content"
@@ -41,6 +41,17 @@
             android:background="@color/white"
             android:text="Arival Time"
             android:id="@+id/arivalTime" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -51,6 +62,12 @@
                 android:id="@+id/prepTime"
                 android:inputType="number"/>
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The amount of time it takes you to get ready and on the road"/>
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
