@@ -70,9 +70,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
                 String result=data.getStringExtra("alarmName");
-                String arivalTime=data.getStringExtra("arivalTime");
-
-                Alarm alarm = new Alarm(result,arivalTime,"");
+                Alarm alarm = new Alarm(result,"test","");
                 String day="";
 
                 int[] dayz = data.getIntArrayExtra("days");
