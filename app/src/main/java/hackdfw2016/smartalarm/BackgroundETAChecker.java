@@ -11,8 +11,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class BackgroundETAChecker extends BroadcastReceiver {
 
@@ -22,6 +32,9 @@ public class BackgroundETAChecker extends BroadcastReceiver {
     private SharedPreferences preferencesSettings;
     private static final int PREFERENCE_MODE_PRIVATE = 0;
     private SharedPreferences.Editor preferenceEditor;
+    Double lat, longi;
+    String time;
+
     @Override
     public void onReceive(Context arg0, Intent arg1) {
         preferencesSettings = arg0.getSharedPreferences("Settings", 0);
@@ -37,12 +50,70 @@ public class BackgroundETAChecker extends BroadcastReceiver {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             arg0.startActivity(intent);
         }
+        lat = Double.valueOf(preferencesSettings.getString("lat",""));
+        longi = Double.valueOf(preferencesSettings.getString("long",""));
+        String place = preferencesSettings.getString("place","");
 
-        /*Intent alarmIntent = new Intent(arg0,BackgroundETAChecker.class);
-        pendingIntent = PendingIntent.getBroadcast(arg0, 0, alarmIntent, 0);
-        manager = (AlarmManager) arg0.getSystemService(Context.ALARM_SERVICE);
-        long interval = 1000000000;
-        //manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
-        manager.setExact(AlarmManager.RTC_WAKEUP, interval, pendingIntent);*/
+        String url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&";
+        url+="origins="+lat+","+longi;
+        url+="&destinations="+place+"Dallas, TX, United States";
+        url+="&key=AIzaSyAVsykzRc9BbaQuMy-ILaywAolcxFK6d2w";
+
+        try {
+            run(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
+
+        String run(String url) throws IOException {
+            Request request = new Request.Builder().url(url).build();
+            OkHttpClient client = new OkHttpClient();
+            final String url2 = url;
+            AsyncTask<String,Void,Integer> task = new AsyncTask() {
+                @Override
+                protected Object doInBackground(Object[] params) {
+                    OkHttpClient client = new OkHttpClient();
+
+                    Request request = new Request.Builder().url(String.valueOf(params[0])).build();
+                    try {
+                        Response response = client.newCall(request).execute();
+                        //Log.d("we made it",response.body().string());
+                        String json = response.body().string();
+                        JSONObject array = new JSONObject(json);
+                        String time = array.getJSONArray("rows").getJSONObject(0).getJSONArray("elements").getJSONObject(0).getJSONObject("duration").getString("text").toString();
+                        Log.d("we made it",time);
+                        setTime(time);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+
+                protected void onPostExceute(Integer result){
+
+
+                }
+
+            };
+            task.execute(url);
+            //Response response = client.newCall(request).execute();
+            return "";
+
+        }
+
+    public void setTime(String time){
+        this.time = time.split(" ")[0];
+        Log.d("TIMEEE",time);
+        calcTime();
+    }
+
+    public void calcTime(){
+
+    }
+
 }
