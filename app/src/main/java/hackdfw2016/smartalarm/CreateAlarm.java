@@ -72,7 +72,7 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
     Button save, cancel;
     Button sunday, monday, tuesday, wednesday, thursday, friday, saturday;
     Button arivalButton;
-    EditText alarmName;
+    EditText alarmName,prepTime;
     Calendar timeSelected;
     HashMap<String, String> map;
     Button addPlace;
@@ -118,7 +118,7 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
         if (mGoogleApiClient == null) {
             Log.d("fail 2", "fail");
         }
-
+        prepTime = (EditText)findViewById(R.id.prepTime);
         save = (Button) findViewById(R.id.save);
         cancel = (Button) findViewById(R.id.cancel);
         alarmName = (EditText) findViewById(R.id.alarmName);
@@ -135,6 +135,7 @@ public class CreateAlarm extends AppCompatActivity implements View.OnClickListen
 
                     }
                 }
+                returnIntent.putExtra("prepTime",prepTime.getText());
                 returnIntent.putExtra("days", days);
                 String timeString = Integer.toString(timeSelected.get(Calendar.HOUR)).concat(":").concat(Integer.toString(timeSelected.get(Calendar.MINUTE)));
                 returnIntent.putExtra("arivalTime", timeString);

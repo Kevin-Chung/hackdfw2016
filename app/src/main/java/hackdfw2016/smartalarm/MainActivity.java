@@ -96,10 +96,11 @@ public class MainActivity extends AppCompatActivity {
                 alarm.setDays(day);
                 alarms.add(alarm);
                 adapter.notifyDataSetChanged();
-
+                String prepTime=data.getStringExtra("prepTime");
 
                 preferenceSettings=getSharedPreferences("Settings", 0);
                 preferenceEditor=preferenceSettings.edit();
+                preferenceEditor.putString("prepTime", prepTime);
                 preferenceEditor.putString("alarmName", result);
                 preferenceEditor.putString("arivalTime", arivalTime);
                 preferenceEditor.putString("dayz", day);

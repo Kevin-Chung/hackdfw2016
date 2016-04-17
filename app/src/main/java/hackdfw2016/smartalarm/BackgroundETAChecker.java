@@ -34,7 +34,7 @@ public class BackgroundETAChecker extends BroadcastReceiver {
     private static final int PREFERENCE_MODE_PRIVATE = 0;
     private SharedPreferences.Editor preferenceEditor;
     Double lat, longi;
-    String time;
+    String time,prepTime;
     String arivalTime;
     Context myContext;
 
@@ -43,9 +43,7 @@ public class BackgroundETAChecker extends BroadcastReceiver {
         myContext=arg0;
         preferencesSettings = arg0.getSharedPreferences("Settings", 0);
         arivalTime = preferencesSettings.getString("arivalTime", "error");
-        preferenceEditor=preferencesSettings.edit();
-        preferenceEditor.putString("arivalTime", arivalTime + "1");
-        preferenceEditor.commit();
+        prepTime = preferencesSettings.getString("prepTime","noPrep");
         // For our recurring task, we'll just display a message
         Log.i("running", arivalTime);
         /*if(arivalTime.equals("4:201")){
@@ -133,7 +131,8 @@ public class BackgroundETAChecker extends BroadcastReceiver {
 
         Calendar currentTime = Calendar.getInstance();
         Log.d("arival time:",Integer.toString(arivalCalendar.get(Calendar.MINUTE)));
-        currentTime.add(Calendar.MINUTE, 1);//todo plus prep time
+        currentTime.add(Calendar.MINUTE, Integer.parseInt(time));//todo plus prep time
+        currentTime.add(Calendar.MINUTE,Integer.parseInt(prepTime));
         Log.d("comparison time:", Integer.toString(currentTime.get(Calendar.MINUTE)));
         Log.d("comparison:", Boolean.toString(currentTime.after(arivalCalendar)));
         if(currentTime.after(arivalCalendar)){

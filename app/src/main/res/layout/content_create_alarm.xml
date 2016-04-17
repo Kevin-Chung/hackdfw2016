@@ -30,11 +30,21 @@
         android:layout_height="wrap_content"
         android:id="@+id/addPlace"
         android:text="Where will you be going?"/>
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Arival Time"
-        android:id="@+id/arivalTime" />
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arival Time"
+            android:id="@+id/arivalTime" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preperation Time"
+            android:id="@+id/prepTime"
+            android:inputType="number"/>
+    </LinearLayout>
 
     <TextView
         android:layout_marginTop="20dp"
